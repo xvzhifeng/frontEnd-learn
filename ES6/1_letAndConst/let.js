@@ -45,9 +45,9 @@ let test3 = function () {
     }
 
     (
-        function() {
+        function () {
             function f() {
-                if(true) {
+                if (true) {
                     console.log("I'm in inside!")
                 }
             }
@@ -65,7 +65,7 @@ let test4 = function () {
     // 本质上块级作用域只是将一些操作绑定在一起，并没有返回值，所以我们无法获取到t的值
     {
         let t = 10;
-        t = t*100;
+        t = t * 100;
     }
 
     // let x = do {
@@ -74,5 +74,18 @@ let test4 = function () {
     // }
 }
 
+/***
+ * let 定义的变量，在它的作用域中的子块中也是可以进行修改的，只要不重新定义，
+ * 就是使用的最外层定义的对象，由此也可以使用这个方法去获得块级作用域的值
+ */
+let test5 = function () {
+    let x = 1;
 
-test4()
+    for (x = 1; x < 10; x++) {
+        x = 10;
+        console.log(x)
+    }
+    console.log(x)
+}
+
+test5()
