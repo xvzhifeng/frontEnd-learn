@@ -57,4 +57,40 @@ let test2 = function() {
         console.log(`${k} : ${v}`)
     }
 }
-test2()
+
+let test3 = function() {
+    let a = function(v = 10) {
+        this.v = v;
+        this.n = function() {
+            console.log('n')
+        }
+    }
+    a.prototype.x = function() {
+        console.log("x")
+    }
+    const s = new a();
+    console.log(s.x());
+    console.log(s.v)
+    s.n()
+    console.log(s)
+    const s1 = Object.getOwnPropertyDescriptors(s)
+    console.log(s1)
+    for(let [k,v] of Object.entries(s1)) {
+        console.log(k,v)
+    }
+    for(let [k,v] of Object.entries(s)) {
+        console.log(k,v)
+    }
+    // s.test()
+    // 对象的原型对象
+    console.log(Object.getPrototypeOf(s) === a.prototype) // true
+}
+
+let test4 = function() {
+    function doSomething(){}
+    doSomething.prototype.foo = "bar"; // add a property onto the prototype
+    var doSomeInstancing = new doSomething();
+    doSomeInstancing.prop = "some value"; // add a property onto the object
+    console.log( doSomeInstancing );
+}
+test4()
