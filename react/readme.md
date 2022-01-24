@@ -21,6 +21,6 @@
 
 `npm install`
 
-切换到helloWorld目录使用以下命令运行
+切换到helloWorld\my-app目录使用以下命令运行
 
 `npm start`
