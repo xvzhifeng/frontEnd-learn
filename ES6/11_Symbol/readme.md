@@ -275,4 +275,3 @@ console.log(x === y); // true
 上面代码中， Symbol.for('bar') 是函数内部运行的，但是生成的 Symbol 值是登记在全局环境的。所以，第二次运行 Symbol.for('bar') 可以取到这个 Symbol 值。
 
 Symbol.for() 的这个全局登记特性，可以用在不同的 iframe 或 service worker 中取到同一个值。
-
