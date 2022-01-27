@@ -10,8 +10,10 @@ let generateName = (function(){
       return '@@' + desc + postfix
     }
   })()
+
   function Symbol(description) {
     // 1, 如果使用 new ，就报错
+    
     if (this instanceof Symbol) {
       return new TypeError('Symbol is not constructor') // 实现第一点不可以使用new 调用
     }
