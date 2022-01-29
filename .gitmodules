@@ -1,0 +1,3 @@
+[submodule "my-project"]
+	path = my-project
+	url = ./uni-app/uni-app-2/my-project
