@@ -69,7 +69,15 @@ export default {
         alert("请先阅读相关条例");
         return;
       } else {
-        alert("点击了注册按钮");
+        uni.redirectTo({
+            url:"/pages/login/email",
+            successs: () => {
+                console.log("跳转到邮箱输入页面成功");
+            },
+            fail: () => {
+                console.log("跳转邮箱输入页面失败");
+            }
+        })
         console.log("注册");
       }
     },

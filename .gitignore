@@ -21,3 +21,5 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
+uni-app/.DS_Store
+.DS_Store
