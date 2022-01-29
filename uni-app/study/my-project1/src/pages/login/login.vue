@@ -42,7 +42,7 @@
             <checkbox
               :value="isRead"
               :checked="false"
-              color="#FFCC33"
+              color="rgb(250, 166, 96)"
               style="transform: scale(0.7)"
             />&nbsp;&nbsp;
             我已成功阅读并同意《隐私协议》《服务条款》和《儿童信息保护》
@@ -74,11 +74,9 @@ export default {
       }
     },
     checkboxChange(e) {
-      if (e.detail.value != undefined) {
-        this.pitchOn = true;
-      } else {
-        this.pitchOn = false;
-      }
+        console.log(...e.detail.value)
+        let [temp] = [...e.detail.value] 
+        this.pitchOn = temp === 'isRead';
     },
   },
 };
