@@ -1,5 +1,5 @@
 {
-  "name": "my-project",
+  "name": "my-project1",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -63,7 +63,6 @@
     "@dcloudio/uni-quickapp-native": "^2.0.1-33920220121003",
     "@dcloudio/uni-quickapp-webview": "^2.0.1-33920220121003",
     "@dcloudio/uni-stat": "^2.0.1-33920220121003",
-    "@dcloudio/uni-ui": "^1.4.11",
     "@vue/shared": "^3.0.0",
     "core-js": "^3.6.5",
     "flyio": "^0.6.2",
