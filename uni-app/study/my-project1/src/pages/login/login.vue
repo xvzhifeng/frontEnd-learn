@@ -1,4 +1,4 @@
-<template >
+<template class="content">
   <view class="content">
     <view class="title1">
       <text class="font1">不</text>
@@ -69,7 +69,7 @@ export default {
         alert("请先阅读相关条例");
         return;
       } else {
-        uni.redirectTo({
+        uni.navigateTo({ url: '/pages/login/email' })({
             url:"/pages/login/email",
             successs: () => {
                 console.log("跳转到邮箱输入页面成功");
@@ -93,9 +93,9 @@ export default {
 <style>
 .content {
   background-color: rgb(58, 57, 57);
-  background-size: 100% 100%;
+  background-size: auto;
   width: 100%;
-  height: 800px;
+  height: 100%;
   flex-direction: column;
   display: flex;
   justify-content: center;
@@ -111,9 +111,9 @@ export default {
   background: rgb(58, 57, 57);
   /* padding: 20px; */
   border: 2px solid rgb(250, 166, 96);
-  width: 70px;
-  height: 70px;
-  margin: 10px;
+  width: 124rpx;
+  height: 124rpx;
+  margin: 6rpx;
 }
 .title2 {
   display: flex;
@@ -122,9 +122,9 @@ export default {
   border-radius: 100px;
   background: rgb(250, 166, 96);
   /* padding: 20px; */
-  width: 70px;
-  height: 70px;
-  margin: 10px;
+  width: 124rpx;
+  height: 124rpx;
+  margin: 6rpx;
 }
 
 .title3 {
@@ -136,22 +136,22 @@ export default {
   /* padding: 20px; */
   width: 400px;
   height: 40px;
-  margin: 10px;
+  margin: 10rpx;
 }
 
 .font1 {
   color: rgb(250, 166, 96);
-  font-size: 40px;
+  font-size: 80rpx;
 }
 
 .font2 {
   color: #313131;
-  font-size: 40px;
+  font-size: 90rpx;
 }
 
 .font3 {
   color: #ffffff;
-  font-size: 20px;
+  font-size: uni-font-size-base;
 }
 
 .font4 {

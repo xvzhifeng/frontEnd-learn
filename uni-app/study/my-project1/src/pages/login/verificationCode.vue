@@ -34,7 +34,7 @@
       </uni-forms-item>
     </uni-forms>
     <view>
-      <button @click="submit" class="submit">注册</button>
+      <button @click="submit" class="submit">登录</button>
     </view>
   </view>
 </template>
@@ -107,8 +107,8 @@ export default {
           //       }
           //   })
           if (res.code === this.resCode) {
-            alert("注册成功");
-
+            // alert("注册成功");
+              console.log("注册成功");
           }
             uni.redirectTo({
               url: `/pages/index/index?email=${this.email}`,
@@ -122,7 +122,7 @@ export default {
         });
     },
     timeup() {
-      alert("验证码过期,请重新发送验证码");
+      // alert("验证码过期,请重新发送验证码");
       uni.redirectTo({
         url: `/pages/login/email?email=${this.email}`,
         success: () => {
