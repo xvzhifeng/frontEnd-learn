@@ -78,25 +78,25 @@ export default {
         .then((res) => {
           console.log("表单数据信息：", res);
         // 调用发送验证码的接口，返回验证码的内容
-        //   uni.request({
-        //       url:"https://sumu.today.com",
-        //       data:{
-        //           email:res.email
-        //       },
-        //       success:(res) => {
-        //           console.log(res.data);
-        //           uni.navigateTo({ url: `/pages/login/verificationCode?code=${res.data.code}`,success:()=>{
-        //               console.log("跳转到输入验证码的页面");
-        //           } })
-        //       }
-        //   })
-        console.log(res.email);
-        uni.navigateTo({
-            url: `/pages/login/verificationCode?code=123456&email=${res.email}`,
-            success: () => {
-              console.log("跳转到输入验证码的页面");
-            },
-          });
+          uni.request({
+              url:"http://127.0.0.1:1011/login/email/text",
+              data:{
+                  email:res.email
+              },
+              success:(res) => {
+                  console.log(res.data);
+                  uni.navigateTo({ url: `/pages/login/verificationCode?code=${res.data.code}`,success:()=>{
+                      console.log("跳转到输入验证码的页面");
+                  } })
+              }
+          })
+        // console.log(res.email);
+        // uni.navigateTo({
+        //     url: `/pages/login/verificationCode?code=123456&email=${res.email}`,
+        //     success: () => {
+        //       console.log("跳转到输入验证码的页面");
+        //     },
+        //   });
         })
         .catch((err) => {
           console.log("表单错误信息：", err);

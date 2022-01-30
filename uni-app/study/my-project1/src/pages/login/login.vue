@@ -1,5 +1,5 @@
-<template class="content">
-  <view class="content">
+<template>
+  <view class="content" :style="{ height: appHeight + 'rpx' }">
     <view class="title1">
       <text class="font1">不</text>
     </view>
@@ -60,9 +60,17 @@ export default {
       title: "Hello",
       isRead: "isRead",
       pitchOn: false,
+      appHeight:0,
     };
   },
-  onLoad() {},
+  onLoad() {
+    uni.getSystemInfo({
+      success: (res) => {
+        console.log("手机可用高度:" + res.windowHeight * 2 + "rpx");
+        this.appHeight = res.windowHeight * 2;
+      },
+    });
+  },
   methods: {
     register() {
       if (!this.pitchOn) {

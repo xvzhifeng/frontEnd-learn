@@ -47,7 +47,7 @@ export default {
       resCode: "",
       email: "",
       formData: {
-        code: "",
+        
       },
       rules: {
         code: {
@@ -81,14 +81,18 @@ export default {
       },
     };
   },
-
   onLoad(options) {
     this.resCode = options.code;
     this.email = options.email;
   },
+  onReady() {
+        // 需要在onReady中设置规则
+        this.$refs.form.setRules(this.rules)
+    },
   methods: {
     // 触发提交表单
     submit() {
+      this.$refs.form.setRules(this.rules);
       this.$refs.form
         .validate()
         .then((res) => {
@@ -109,13 +113,16 @@ export default {
           if (res.code === this.resCode) {
             // alert("注册成功");
               console.log("注册成功");
-          }
-            uni.redirectTo({
+              uni.redirectTo({
               url: `/pages/index/index?email=${this.email}`,
               success: () => {
                 console.log("跳转到主页");
               },
             });
+          } else {
+            console.log("验证码错误");
+          }
+            
         })
         .catch((err) => {
           console.log("表单错误信息：", err);
