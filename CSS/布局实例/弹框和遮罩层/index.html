@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <style type="text/css">
+    div.container {
+      width: 100%;
+      margin: 0px;
+      border: 1px solid gray;
+      line-height: 150%;
+    }
+
+    .logo {
+      float: left;
+      margin: 0 100px;
+    }
+
+    .navigation {
+      display: flex;
+      justify-content: space-around;
+      /*y*/
+      align-items: center;
+      width: 60%;
+    }
+
+    div.header {
+      padding: 0.5em;
+      color: white;
+      background-color: gray;
+      clear: left;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    div.footer {
+      padding: 0.5em;
+      color: black;
+      background-color: gray;
+      text-align: center;
+      clear: left;
+    }
+
+    h1.header {
+      padding: 0;
+      margin: 0;
+    }
+
+    div.left {
+      width: 160px;
+      margin: 0;
+      padding: 1em;
+    }
+
+    div.content {
+      margin-left: 190px;
+      border-left: 1px solid gray;
+      padding: 1em;
+    }
+
+    .showList {
+      margin: 1%;
+      border: 1px black;
+    }
+
+    .sublist {
+      float: left;
+      background-color: bisque;
+      margin: 1%;
+      display: flex;
+      width: 31%;
+    }
+
+    .sublistLeft {
+      flex: 1;
+      background-color: gray;
+      height: 8vmax;
+    }
+
+    .sublistright {
+      flex: 2;
+    }
+
+    .showarticle {
+      margin: 1%;
+      border: 1px black;
+    }
+
+    .article {
+      display: flex;
+      border: 1px black;
+      width: 100%;
+    }
+
+    .articalLeft {
+      flex: 1;
+      background-color: gray;
+      height: 30vmax;
+      margin: 1%;
+    }
+
+    .articalRight {
+      flex: 2;
+      background-color: beige;
+      margin: 1%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .articleNav {
+      background-color: aquamarine;
+      flex: 1;
+      margin: 1%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .ulNumber {
+      list-style: decimal;
+    }
+
+    .grayBack {
+      position: absolute;
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 1000vh;
+      width: 100%;
+      background-color: gray;
+      opacity: 0.5;
+      z-index: 1;
+    }
+
+    .popUpBox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100%;
+      position: absolute;
+      z-index: 3;
+      visibility: hidden;
+    }
+
+    .popUpBoxCentent {
+      border-radius: 10px;
+      background-color: burlywood;
+      height: 20vh;
+      width: 23vw;
+
+    }
+
+    .popUpBoxCententsub {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .popUpBoxTitle {
+      text-align: center;
+    }
+
+    .inputText {
+      height: 10vh;
+      width: 18vw;
+    }
+  </style>
+
+  <script>
+    var article = "";
+    function modify(index, event) {
+      let gray = document.createElement("div");
+      gray.className = "grayBack";
+      document.getElementById("page").appendChild(gray);
+      let popUp = document.getElementsByClassName("popUpBox");
+      popUp[0].style.visibility = "visible";
+      article = index;
+      document.getElementById('editText').value = document.getElementById(index).innerHTML;
+      // alert("编辑");
+      // pos(this,0,0,event);
+
+    }
+
+    var pos = function (o, x, y, event) {  //鼠标定位赋值函数
+      var posX = 0, posY = 0;  //临时变量值
+      var e = event || window.event;  //标准化事件对象
+      if (e.pageX || e.pageY) {  //获取鼠标指针的当前坐标值
+        posX = e.pageX;
+        posY = e.pageY;
+      } else if (e.clientX || e.clientY) {
+        posX = event.clientX + document.documentElement.scrollLeft + document.body.scrollLeft;
+        posY = event.clientY + document.documentElement.scrollTop + document.body.scrollTop;
+      }
+      console.log(`x ${posX}, y ${posY}`)
+      o.style.position = "absolute";  //定义当前对象为绝对定位
+      o.style.top = (posY + y) + "px";  //用鼠标指针的y轴坐标和传入偏移值设置对象y轴坐标
+      o.style.left = (posX + x) + "px";  //用鼠标指针的x轴坐标和传入偏移值设置对象x轴坐标
+    }
+
+
+    window.onload = () => {
+      //获取拖拽实验对象
+      let el = document.getElementById("popUpBoxCentent");
+      //在该对象上绑定鼠标点击事件
+      el.onmousedown = (e) => {
+        //鼠标按下，计算鼠标触点距离元素左侧和顶部的距离
+
+        let disX = e.clientX - el.offsetLeft;
+        let disY = e.clientY - el.offsetTop;
+        document.onmousemove = function (e) {
+          //计算需要移动的距离
+          let tX = e.clientX - disX;
+          let tY = e.clientY - disY;
+          //移动当前元素
+          if (tX >= 0 && tX <= window.innerWidth - el.offsetWidth) {
+            el.style.left = tX + 'px';
+          }
+          if (tY >= 0 && tY <= window.innerHeight - el.offsetHeight) {
+            el.style.top = tY + 'px';
+          }
+        };
+
+        //鼠标松开时，注销鼠标事件，停止元素拖拽。
+        document.onmouseup = function (e) {
+          document.onmousemove = null;
+          document.onmouseup = null;
+        };
+      }
+    }
+
+    function moves(event) {
+      let popUp = document.getElementsByClassName("popUpBoxCentent");
+      popUp[0].style.position = "absolute";
+      var e = event || window.event;  //标准化事件对象
+      if (e.pageX || e.pageY) {  //获取鼠标指针的当前坐标值
+        posX = e.pageX;
+        posY = e.pageY;
+      }
+      // pos(popUp[0], posX, posY, event);
+    }
+
+    function save(index) {
+      console.log(index);
+      let popUp = document.getElementsByClassName("popUpBox");
+      popUp[0].style.visibility = "hidden";
+      let gray = document.getElementsByClassName("grayBack");
+      document.getElementById("page").removeChild(gray[0]);
+      document.getElementById(article).innerHTML = document.getElementById(index).value;
+    }
+
+    function allowDrop(ev) {
+      ev.preventDefault();
+    }
+
+  </script>
+
+</head>
+
+<body id="page">
+
+  <div class="popUpBox">
+    <div class="popUpBoxCentent" draggable="true" ondrag="moves(event)" ondrop="moves(event)" id="popUpBoxCentent">
+      <div class="popUpBoxTitle">
+        <p>弹出窗口</p>
+      </div>
+      <div class="popUpBoxCententsub">
+        <div class="popUpBoxTxet">
+          <textarea class="inputText" id="editText">
+            编辑的文本
+          </textarea>
+        </div>
+        <div class="popUpBoxBut">
+          <button onclick="save('editText')">保存</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- <div class="grayBack"></div> -->
+
+  <div class="container">
+
+    <div class="header">
+      <div class="logo">
+        <P>logo</P>
+      </div>
+      <div class="navigation">
+        <div>
+          <a>Admin</a>
+        </div>
+        <div>
+          <a>Addons</a>
+        </div>
+        <div>
+          <a>package</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="showList">
+      <div class="sublist">
+        <div class="sublistLeft">1</div>
+        <div class="sublistright">1</div>
+      </div>
+      <div class="sublist">
+        <div class="sublistLeft">1</div>
+        <div class="sublistright">1</div>
+      </div>
+      <div class="sublist">
+        <div class="sublistLeft">1</div>
+        <div class="sublistright">1</div>
+      </div>
+      <div class="sublist">
+        <div class="sublistLeft">1</div>
+        <div class="sublistright">1</div>
+      </div>
+
+      <!-- <div class="sublist">
+        <div class="sublistLeft">1</div>
+        <div class="sublistright">1</div>
+      </div> -->
+    </div>
+
+    <div class="showarticle">
+      <div class="article">
+        <div class="articalLeft">
+          <ul class="ulNumber">
+            <li>title 1</li>
+            <li>title 2</li>
+            <li>title 3</li>
+            <li>title 4</li>
+          </ul>
+        </div>
+        <div class="articalRight">
+          <div class="articleNav">
+            <div>
+              <p id="article-1">
+                这里是文章
+              </p>
+            </div>
+            <div>
+              <button onclick="modify('article-1')">编辑</button>
+            </div>
+
+          </div>
+          <div class="articleNav">
+            <div>
+              <p id="article-2">
+                这里是文章
+              </p>
+            </div>
+            <div>
+              <button onclick="modify('article-2')">编辑</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="footer">
+      <p>
+        Copyright 2022 by xzf.
+      </p>
+    </div>
+  </div>
+
+</body>
+
+</html>
