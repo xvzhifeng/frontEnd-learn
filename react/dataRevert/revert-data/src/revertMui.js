@@ -39,9 +39,9 @@ class SelectX extends React.Component {
             onChange={this.props.onChange}
             // className="selectView"
           >
-            <MenuItem value="cm">cm</MenuItem>
-            <MenuItem value="mm">mm</MenuItem>
-            <MenuItem value="m">m</MenuItem>
+            {this.props.typeList.map((option) => (
+              <MenuItem key={option} value={option}>{option}</MenuItem>
+            ))}
           </Select>
         </FormControl>
       </div>
@@ -56,6 +56,7 @@ class MainForm extends React.Component {
       selectFrom: "mm",
       selectTo: "mm",
       result: "",
+      typeList: ["mm", "cm", "dm", "m", "km"],
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -80,12 +81,20 @@ class MainForm extends React.Component {
     if (this.state.selectFrom == "cm") {
       n = n * 10;
     } else if (this.state.selectFrom == "m") {
+      n = n * 1000;
+    } else if (this.state.selectFrom == "dm") {
       n = n * 100;
+    } else if (this.state.selectFrom == "km") {
+      n = n * 1000000;
     }
     if (this.state.selectTo == "cm") {
       n = n / 10.0;
     } else if (this.state.selectTo == "m") {
+      n = n / 1000.0;
+    } else if (this.state.selectTo == "dm") {
       n = n / 100.0;
+    } else if (this.state.selectTo == "km") {
+      n = n / 1000000.0;
     }
     n += this.state.selectTo;
     this.setState({ result: n });
@@ -117,6 +126,7 @@ class MainForm extends React.Component {
                 value={this.state.selectFrom}
                 onChange={(e) => this.handleChangeSelect(e)}
                 label="from"
+                typeList={this.state.typeList}
               />
             </Grid>
             <Grid item xs={2}>
@@ -125,6 +135,7 @@ class MainForm extends React.Component {
                 value={this.state.selectTo}
                 onChange={(e) => this.handleChangeSelect(e)}
                 label="to"
+                typeList={this.state.typeList}
               />
             </Grid>
             <Grid item xs={2}></Grid>
