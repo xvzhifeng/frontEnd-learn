@@ -24,3 +24,14 @@
 切换到helloWorld\my-app目录使用以下命令运行
 
 `npm start`
+
+## 附录
+
+```json
+ "husky": {
+        "hooks": {
+            "commit-msg": "commitlint -e $GIT_PARAMS",
+            "pre-commit": "pretty-quick --staged"
+        }
+    },
+```
