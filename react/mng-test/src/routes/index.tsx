@@ -15,6 +15,7 @@ type CRouterProps = {
 };
 
 const CRouter = (props: CRouterProps) => {
+    console.log({...props});
     const { auth } = props;
     const [smenus] = useAlita({ smenus: null }, { light: true });
 
@@ -35,6 +36,7 @@ const CRouter = (props: CRouterProps) => {
         return permit ? requireAuth(permit, component) : component;
     };
     const createMenu = (r: IFMenu) => {
+        console.log(r);
         const route = (r: IFMenuBase) => {
             const Component = r.component && AllComponents[r.component];
             return (
@@ -63,7 +65,9 @@ const CRouter = (props: CRouterProps) => {
     return (
         <Switch>
             {Object.keys(routesConfig).map((key) => createRoute(key))}
+            {/* 新增的菜单 */}
             {getAsyncMenus().map(createMenu)}
+            {/* 如果前面的都没有，就跳转到404的页面 */}
             <Route render={() => <Redirect to="/404" />} />
         </Switch>
     );

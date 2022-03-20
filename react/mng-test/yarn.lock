@@ -11256,10 +11256,10 @@
   dependencies:
     "balanced-match" "^1.0.0"
 
-"redux-alita@^2.3.1":
-  "integrity" "sha512-fbMhaszkgEeCc3TvdlqeK0t8yqYJWztudBKbVLyj+ouAchtc9R/2Il/Dmm3V0SxOdqqQmJJAnrNS5gmI21dQgg=="
-  "resolved" "https://registry.npmmirror.com/redux-alita/-/redux-alita-2.3.1.tgz"
-  "version" "2.3.1"
+"redux-alita@^2.3.3":
+  "integrity" "sha512-Qj1T/5cUEBDTH76eBHMORfRkbqAPfuHNSf20F5BhdhlT4J5GVC2G5mHKXJChHosQHXDPeyyT3Z224OrFGs9rVQ=="
+  "resolved" "https://registry.npmmirror.com/redux-alita/-/redux-alita-2.3.3.tgz"
+  "version" "2.3.3"
   dependencies:
     "react-redux" "^7.1.0"
     "redux" "^4.0.1"
