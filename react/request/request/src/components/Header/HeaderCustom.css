@@ -1,0 +1,15 @@
+.header {
+    color: aliceblue;
+    text-align: center;
+    width: 200px;
+}
+
+.search {
+    height: 32px;
+    margin: 16px;
+}
+
+.avatar {
+    float: right;
+    margin: 10px;
+}

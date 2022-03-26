@@ -1,12 +1,11 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route ,Navigate} from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
-
-import { Home } from "./components/Home";
-import { Axios } from "./components/Axios";
-import { Fetch } from "./components/Fetch";
+import { Index } from "./components/Index/Index";
+import NotFound from "./components/pages/NotFound"
+import { Axios } from "./components/Axios/Axios";
 
 function TestFecth() {
   const getData = () => {
@@ -30,9 +29,11 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/Axios" element={<Axios />} />
-          <Route path="/Fetch" element={<Fetch />} />
+          <Route path="/" element={<Navigate to="/app" />} />
+          <Route path="/app/*" element={<Index />} />
+          <Route path="/404" element={<NotFound/>} />
+          {/* <Route path="/Axios" element={<Axios />} /> */}
+          <Route path="*" element={<Navigate to="/404" />} />
         </Routes>
       </BrowserRouter>
     </div>
