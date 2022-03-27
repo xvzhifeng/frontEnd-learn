@@ -14,6 +14,7 @@ export const Axios = () => {
       .get(
         "https://mock.presstime.cn/mock/623dd6987bad590021c4cda9/test/getAxiosUser",{
           withCredentials:false,
+          mode: "cors",
         }
       )
       .then(function (response) {

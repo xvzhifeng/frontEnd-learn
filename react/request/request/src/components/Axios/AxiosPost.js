@@ -14,14 +14,15 @@ export const AxiosPost = () => {
       .post(
         "https://mock.presstime.cn/mock/623dd6987bad590021c4cda9/test/getAxiosUser",
         {
-          mode: "cors",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
+          // mode: "cors",
+          // credentials: "include",
+          // headers: {
+          //   "Content-Type": "application/x-www-form-urlencoded",
+          // },
         }
       )
       .then(function (response) {
+        setUser(response.data.data);
         console.log(response);
       })
       .catch(function (error) {

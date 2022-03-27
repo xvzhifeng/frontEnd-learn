@@ -22,6 +22,7 @@ export const AxiosGet = () => {
         }
       )
       .then(function (response) {
+        setUser(...response.data.data);
         console.log(response);
       })
       .catch(function (error) {

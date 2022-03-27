@@ -98,7 +98,7 @@ export class Index extends React.Component {
             </div>
           </Content>
           <Footer style={{ textAlign: "center" }}>
-            Ant Design ©2018 Created by Ant UED
+            Design ©2022 Created by sumu
           </Footer>
         </Layout>
       </Layout>
