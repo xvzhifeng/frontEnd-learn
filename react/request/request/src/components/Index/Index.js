@@ -44,7 +44,7 @@ export class Index extends React.Component {
     const { collapsed } = this.state;
     return (
       <Layout style={{ minHeight: "100vh" }}>
-        <Sider collapsible collapsed={collapsed} onCollapse={this.onCollapse}>
+        <Sider collapsible collapsed={collapsed} onCollapse={this.onCollapse} >
           <div className="logo" />
           <Menu theme="dark" defaultSelectedKeys={["/app/axios/post"]} mode="inline">
             <SubMenu key="Axios" icon={<PieChartOutlined />}  title="Axios">
@@ -63,9 +63,6 @@ export class Index extends React.Component {
                 <Link to="/app/fetch/post">post</Link>
               </Menu.Item>
             </SubMenu>
-            <Menu.Item key="2" icon={<DesktopOutlined />}>
-              <Link to="/app/fetch">Fetch</Link>
-            </Menu.Item>
             <SubMenu key="sub1" icon={<UserOutlined />} title="User">
               <Menu.Item key="3">Tom</Menu.Item>
               <Menu.Item key="4">Bill</Menu.Item>

@@ -1,70 +1,80 @@
-# Getting Started with Create React App
+# fetch和axios的区别
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 一、fecth与xios的定义
 
-## Available Scripts
+fecth是浏览器提供的一个api，而axios是社区封装的一个组件
+fecth是一个低底层的api，是W3C的正式标准，使用起来不怎么舒服，所以需要封装，以便使用。
 
-In the project directory, you can run:
+## 二、**fetch和axios的区别**
 
-### `npm start`
+fetch是规范底层api
+axios是封装
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### fetch的优点
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- 语法简洁，更加语义化
+- 基于标准Promise实现，支持async/await
+- 更加底层，提供的API丰富
+- 底层原生支持
+- 是由whatwg组织提出，是w3c的规范
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+### fetch的缺点
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+	fetch是一个底层api，使用不便，需重新封装
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. fetch只对网络请求报错，对400,500都当做成功的请求，服务器返回400,500错误码时并不会reject,只有网络错误导致这些请求不能完成时，fetch才会被reject。
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. fetch默认不会带cookie,需要添加配置项:fetch(url,{credentials:‘include’})
 
-### `npm run eject`
+3. fetch不支持abort,不支持超时控制，使用setTimeout及Promise.reject的实现的超时控制并不能阻止过程继续在后台运行，造成了流量的浪费
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+4. fetch没有办法原生检测请求的进度，而XHR可以（进度条）
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   ```js
+   //fetch举例
+   fetch('httpp://example.com/movies.js') //第二个参数 指定get/post
+   .then(function(response){
+   	return response.json();
+   })
+   .then(function(myJson){
+   	console.log(myJson);
+   });
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### **axios的优点**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+axios是一个基于Promise用于浏览器和nodejs的http客户端，本质上也是对原生XHR的封装，只不过它是Promise的实现版本，符合最新的ES规范，它本身具有以下特征：
 
-### Code Splitting
+1. 从浏览器中创建XMLHttpRequest
+2. 支持Promise API
+3. 客户端支持防止CSRF
+4. 提供了一些并发请求的接口（！方便了很多操作）
+5. 从node.js创建http请求
+6. 拦截请求和响应
+7. 转换请求和响应数据（请求A服务器可以转换到B服务器）
+8. 中断请求
+9. 自动转换JSON数据（fetch API需要手动处理返回的数据）
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```js
+//axios举例
+xios.get('/user'{
+	params:{
+		ID:0512
+	}
+})
+.then(funtion(response){
+	console.log(response);
+})
+.catch(function(error){
+	console.log(error);
+});
+```
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
