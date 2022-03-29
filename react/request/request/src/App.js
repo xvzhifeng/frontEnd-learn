@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import { Index } from "./components/Index/Index";
 import NotFound from "./components/pages/NotFound"
 import { Axios } from "./components/Axios/Axios";
+import { GlobalProvider } from './context/GlobalState';
 
 function TestFecth() {
   const getData = () => {
@@ -26,6 +27,7 @@ function TestFecth() {
 
 function App() {
   return (
+    <GlobalProvider>
     <div>
       <BrowserRouter>
         <Routes>
@@ -37,6 +39,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </div>
+    </GlobalProvider>
   );
 }
 
