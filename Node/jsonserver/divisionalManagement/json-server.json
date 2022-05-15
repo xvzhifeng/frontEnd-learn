@@ -1,0 +1,10 @@
+{
+    "port": 8010,
+    "watch": true,
+    "static": "./public",
+    "read-only": false,
+    "no-cors": true,
+    "no-gzip": false,
+    "routes": "route.json",
+    "host":"0.0.0.0"
+  }

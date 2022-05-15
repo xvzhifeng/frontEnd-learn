@@ -1,0 +1,28 @@
+{
+    "person":[
+        {
+            "id":1,
+            "name":"white",
+            "sex":1,
+            "wockerDate":"5/10/2021",
+            "manager":"black",
+            "city":"CQ"
+        },
+        {
+            "id":2,
+            "name":"white",
+            "sex":1,
+            "wockerDate":"5/10/2021",
+            "manager":"black",
+            "city":"CQ"
+        },
+        {
+            "id":3,
+            "name":"white",
+            "sex":1,
+            "wockerDate":"5/10/2021",
+            "manager":"black",
+            "city":"CQ"
+        }
+    ]
+}
