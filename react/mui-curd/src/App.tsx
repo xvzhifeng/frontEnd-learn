@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ProductPage from "./pages/ProductListPage";
 import AboutPage from "./pages/AboutPage";
 import HomePage from "./pages/HomePage";
+import SectionPage from "./pages/SectionListPage"
 
 import { ThemeProvider } from "@material-ui/styles";
 import { createTheme } from "@material-ui/core/styles";
@@ -45,6 +46,7 @@ function App() {
         <ConfirmProvider>
           <Router>
             <Switch>
+              <Route path="/sections" component={SectionPage} exact />
               <Route path="/products" component={ProductPage} exact />
               <Route path="/About" component={AboutPage} exact />
               <Route path="/" component={HomePage} exact />

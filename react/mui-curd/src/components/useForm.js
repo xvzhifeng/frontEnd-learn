@@ -8,7 +8,6 @@ export function useForm(initialFValues, validateOnChange = false, validateSchema
   const [values, setValues] = useState(initialFValues);
   const [errors, setErrors] = useState({});
 
-  console.log(initialFValues);
   const resetForm = () => {
     setValues(initialFValues);
     setErrors({})

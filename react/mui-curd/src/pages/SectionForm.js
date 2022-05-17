@@ -2,19 +2,20 @@ import React, { useCallback, useEffect } from 'react'
 import { Grid, } from '@material-ui/core';
 import Controls from "components/controls/Controls";
 import { useForm, Form } from 'components/useForm';
-import * as ProductService from "services/ProductService";
+import * as SectionService from "services/SectionService";
 
 import * as yup from 'yup';
 
 const initialFValues = {
     id: 0,
     name: '',
-    category: 0,
-    weight: 0,
-    price: 0
+    sex: -1,
+    wockerDate: "",
+    manager: '',
+    city: '',
 }
 
-export default function ProductForm(props) {
+export default function SectionForm(props) {
     const { addOrEdit, recordForEdit } = props
 
     const handleSubmit = e => {
@@ -24,28 +25,25 @@ export default function ProductForm(props) {
     }
 
     useEffect(() => {
-        if (recordForEdit != null)
+        if (recordForEdit != null) {
             setValues({
                 ...recordForEdit
             })
-            console.log(recordForEdit)
+            console.log(values)
+        }
+            
     }, [recordForEdit])
 
-    const categoryIDs = ProductService.getCategoryCollection().map(element => element.id);
+    const sexIds = SectionService.getSexCollection().map(element => element.id);
 
     const schema = yup.object().shape({
         name: yup.string().required('名前は必須項目です'),
-        category: yup.number().required('種類は必須項目です')
+        sex: yup.number().required('種類は必須項目です')
             .typeError('正しい種類を選択してください')
-            .oneOf(categoryIDs, "正しい種類を選んでください"),
-        weight: yup.number().required('重量は必須項目です')
-            .typeError('数字を入力してください')
-            .positive('正の数を指定してください')
-            .integer('整数で指定してください'),
-        price: yup.number().required('価格は必須項目です')
-            .typeError('数字を入力してください')
-            .positive('正の数を指定してください')
-            .integer('整数で指定してください'),
+            .oneOf(sexIds, "正しい種類を選んでください"),
+        wockerDate: yup.date(),
+        manager: yup.string().required('経理は必須項目です'),
+        city: yup.string().required('都市は必須項目です'),
     });
 
     const {
@@ -64,32 +62,39 @@ export default function ProductForm(props) {
                 <Grid item xs={12} sm={12}>
                     <Controls.Input
                         name="name"
-                        label="商品名"
+                        label="社员名"
                         value={values.name}
                         onChange={handleInputChange}
                         error={errors.name}
                     />
                     <Controls.Select
-                        name="category"
-                        label="種類"
-                        value={values.category}
+                        name="sex"
+                        label="性別"
+                        value={values.sex}
                         onChange={handleInputChange}
-                        options={ProductService.getCategoryCollection()}
-                        error={errors.category}
+                        options={SectionService.getSexCollection()}
+                        error={errors.sex}
+                    />
+                    <Controls.InputDate
+                        label="労働時間"
+                        name="wockerDate"
+                        value={values.wockerDate}
+                        onChange={handleInputChange}
+                        error={errors.wockerDate}
                     />
                     <Controls.Input
-                        label="重さ"
-                        name="weight"
-                        value={values.weight}
+                        label="経理"
+                        name="manager"
+                        value={values.manager}
                         onChange={handleInputChange}
-                        error={errors.weight}
+                        error={errors.manager}
                     />
                     <Controls.Input
-                        label="価格"
-                        name="price"
-                        value={values.price}
+                        label="都市"
+                        name="city"
+                        value={values.city}
                         onChange={handleInputChange}
-                        error={errors.price}
+                        error={errors.city}
                     />
 
                     <div>

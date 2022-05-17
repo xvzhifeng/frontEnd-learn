@@ -15,7 +15,7 @@ module.exports = () => {
                 'category_Id|1-6': 1
             }
         ],
-        'people|101': [
+        'peoples|101': [
             {
                 'id|+1': 1000,
                 "name": "@first",

@@ -3,7 +3,7 @@
     "watch": true,
     "static": "./public",
     "read-only": false,
-    "no-cors": true,
+    "no-cors": false,
     "no-gzip": false,
     "routes": "route.json",
     "host":"0.0.0.0"
