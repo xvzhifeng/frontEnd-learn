@@ -8,13 +8,18 @@ export function useForm(initialFValues, validateOnChange = false, validateSchema
   const [values, setValues] = useState(initialFValues);
   const [errors, setErrors] = useState({});
 
+  //  用于恢复初始值
   const resetForm = () => {
     setValues(initialFValues);
     setErrors({})
   }
 
   const validateField = async (value) => {
+    /**
+     * ES5 引入了Object.keys方法，成员是参数对象自身的（不含继承的）所有可遍历（ enumerable ）属性的键名。
+     */
     const fieldPath = Object.keys(value)[0];
+    // Object.values方法返回一个数组，成员是参数对象自身的（不含继承的）所有可遍历（ enumerable ）属性的键值
     const fieldValue = Object.values(value)[0];
     var myerrors = { [fieldPath]: null };
     var isValid = false;
@@ -56,6 +61,7 @@ export function useForm(initialFValues, validateOnChange = false, validateSchema
   const validateForm = async (addOrEdit) => {
     const fieldValues = values;
 
+    // When the abortEarly option is false this is where you can inspect each error thrown, alternatively, errors will have all of the messages from each inner error.
     const isValid = await validateSchema.isValid(fieldValues, {
       abortEarly: false, // Prevent aborting validation after first error
     })
@@ -86,12 +92,13 @@ export function useForm(initialFValues, validateOnChange = false, validateSchema
       })
     }
   }
-
+  // useCallback 返回一个函数，只有当value发生变化时才会返回新的函数，用于优化性能
   const handleInputChange = useCallback(e => {
     const { name, value } = e.target
 
     setValues({ ...values, [name]: value })
     if (validateOnChange) {
+      // 检测当个field是否符合要求
       validateField({
         [name]: value
       })

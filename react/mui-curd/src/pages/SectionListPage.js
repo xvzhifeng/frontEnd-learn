@@ -75,6 +75,7 @@ const SectionPage = () => {
     const classes = useStyles();
     const [recordForEdit, setRecordForEdit] = useState(null)
     const [records, setRecords] = useState(peoples)
+    // 为什么 ？
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
     const [openPopup, setOpenPopup] = useState(false)
     const [searchKind, setsearchKind] = useState(0)
@@ -177,7 +178,7 @@ const SectionPage = () => {
 
     const confirm = useConfirm();
 
-    const removeProduct = (item) => {
+    const removePhople = (item) => {
         confirm({ title: '確認', description: '用户' + item.name + 'を削除してよろしいでしょうか' })
             .then(() => {
                 sectionService.removePeople(item).then(() => {
@@ -189,7 +190,7 @@ const SectionPage = () => {
 
     return (
         <GenericTemplate title="社员一覧">
-
+            {/* 以下全是传过去的children */}
             <Paper className={classes.pageContent}>
 
                 <Toolbar>
@@ -250,7 +251,7 @@ const SectionPage = () => {
                                     </Controls.ActionButton>
                                     <Controls.ActionButton
                                         color="secondary"
-                                        onClick={() => { removeProduct(item) }}>
+                                        onClick={() => { removePhople(item) }}>
                                         <CloseIcon fontSize="small" />
                                     </Controls.ActionButton>
                                 </TableCell>
