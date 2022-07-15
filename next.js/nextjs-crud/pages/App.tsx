@@ -44,7 +44,7 @@ function App({ children }) {
   return (
       <ThemeProvider theme={theme}>
         <GlobalStateProvider>
-          {children}
+        {children}
         </GlobalStateProvider>
       </ThemeProvider>
   );
