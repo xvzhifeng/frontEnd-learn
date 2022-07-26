@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import GenericTemplate from "components/templates/GenericTemplate";
-import SectionForm from "pages/SectionForm"
-import * as sectionService from "services/SectionService"
+import GenericTemplate from "../components/templates/GenericTemplate";
+import SectionForm from "./SectionForm"
+import * as sectionService from "../services/SectionService"
 
-import useTable from "components/useTable";
-import Popup from "components/Popup";
-import Controls from "components/controls/Controls";
+import useTable from "../components/useTable";
+import Popup from "../components/Popup";
+import Controls from "../components/controls/Controls";
 //import LoadingProgress from 'components/LoadingProgress';
 
 import { Paper, makeStyles, TableBody, TableRow, TableCell, Toolbar, InputAdornment } from '@material-ui/core';
@@ -16,6 +16,8 @@ import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import CloseIcon from '@material-ui/icons/Close';
 
 import { useConfirm } from 'material-ui-confirm';
+import { ConfirmProvider } from 'material-ui-confirm';
+
 
 
 const useStyles = makeStyles(theme => ({
