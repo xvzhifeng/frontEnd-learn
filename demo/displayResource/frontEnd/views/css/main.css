@@ -1,0 +1,195 @@
+
+	body {
+        background: url(../../resources/img/beautifulred.jpg) no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+        #dh{
+			position: relative;
+			margin-top: 0px; 
+            /* 设置元素的上外边距 */
+			width: 600px;
+			height:60px;
+			border: 0px;
+            /* 设置元素的边框样式，大小和颜色 */
+			background-color: rgb(29, 34, 5);
+			opacity:0.6;
+            float: left;
+          
+		}
+		#dh ul{
+			padding: 0px;
+			/* 设置元素的内边距 */
+		}
+		a{
+			color: #FFF;
+			width: 100px;
+			height: 40px;
+			display: block;
+            /* 将元素显示变为块级元素 */
+			text-decoration: none;
+            /* 元素的文本修饰  none	默认。定义标准的文本。
+            underline	定义文本下的一条线。
+            overline	定义文本上的一条线。
+            line-through	定义穿过文本下的一条线。
+            blink	定义闪烁的文本。
+            inherit	规定应该从父元素继承 text-decoration 属性的值。 */
+			text-align: center;
+            /* 文本居中 */
+			line-height: 40px;
+            /* 行高 */
+			font-family: Microsoft Yahei;
+            /* 元素的字体 */
+			font-weight: 2px;
+		}
+		#dh {
+			margin:0px auto; 
+		}
+		#dh ul li {
+			list-style: none;
+			float: left;
+		}
+		#dh ul li a:hover{
+			background-color:#eeeeee;
+		}
+		#dh ul:hover{
+			display: block;
+		}
+
+		#dh ul li ul{
+			background-color: #00adb5;
+			position: absolute;
+			display: none;
+		}
+		#dh ul li ul li{
+			float: none;
+			background-color: #393e46;
+			
+		}
+		#dh ul li ul li a{
+			font-size: 13px;
+			font-weight: 0px;
+		}
+		#dh ul li:hover ul{             
+			display: block;
+		}
+		@import url("https://fonts.googleapis.com/css?family=Inconsolata:700");
+			* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			}
+
+			.container {
+			position: absolute;
+			margin: auto;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			width: 300px;
+			height: 100px;
+			}
+			.container .search {
+			position: absolute;
+			margin: auto;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			width: 80px;
+			height: 80px;
+			background: crimson;
+			border-radius: 50%;
+			transition: all 1s;
+			z-index: 4;
+			box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.4);
+			}
+			.container .search:hover {
+			cursor: pointer;
+			}
+			.container .search::before {
+			content: "";
+			position: absolute;
+			margin: auto;
+			top: 22px;
+			right: 0;
+			bottom: 0;
+			left: 22px;
+			width: 12px;
+			height: 2px;
+			background: white;
+			transform: rotate(45deg);
+			transition: all .5s;
+			}
+			.container .search::after {
+			content: "";
+			position: absolute;
+			margin: auto;
+			top: -5px;
+			right: 0;
+			bottom: 0;
+			left: -5px;
+			width: 25px;
+			height: 25px;
+			border-radius: 50%;
+			border: 2px solid white;
+			transition: all .5s;
+			}
+			.container input {
+			font-family: 'Inconsolata', monospace;
+			position: absolute;
+			margin: auto;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			width: 50px;
+			height: 50px;
+			outline: none;
+			border: none;
+			background: crimson;
+			color: white;
+			text-shadow: 0 0 10px crimson;
+			padding: 0 80px 0 20px;
+			border-radius: 30px;
+			box-shadow: 0 0 25px 0 crimson, 0 20px 25px 0 rgba(0, 0, 0, 0.2);
+			transition: all 1s;
+			opacity: 0;
+			z-index: 5;
+			font-weight: bolder;
+			letter-spacing: 0.1em;
+			}
+			.container input:hover {
+			cursor: pointer;
+			}
+			.container input:focus {
+			width: 300px;
+			opacity: 1;
+			cursor: text;
+			}
+			.container input:focus ~ .search {
+			right: -250px;
+			background: #151515;
+			z-index: 6;
+			}
+			.container input:focus ~ .search::before {
+			top: 0;
+			left: 0;
+			width: 25px;
+			}
+			.container input:focus ~ .search::after {
+			top: 0;
+			left: 0;
+			width: 25px;
+			height: 2px;
+			border: none;
+			background: white;
+			border-radius: 0%;
+			transform: rotate(-45deg);
+			}
+			.container input::placeholder {
+			color: white;
+			opacity: 0.5;
+			font-weight: bolder;
+			}
