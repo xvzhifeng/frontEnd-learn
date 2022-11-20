@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import type { Ref } from 'vue'
 import router from "../router/index"
+import Cookies from "js-cookie"
 let message = ref<string>('Hello Vue')
 let username: Ref<string> = ref('')
 let password: Ref<String> = ref('')
@@ -30,8 +31,12 @@ function login() {
     if (username.value != "" && password.value == "123456") {
         status.value = 'validate'
         message.value = `hello ${username.value}`
-        // router.go("/")
+
+        Cookies.set('username', username.value)
+        Cookies.set("login", true)
         already_login_user.value.push(username.value)
+        router.push("/todo_list")
+        router.go("/")
     } else {
         status.value = 'invalidate'
     }
@@ -43,7 +48,7 @@ function rm_login_user(user: string) {
         return x != user
     })
 }
-watch(status, (newStatus, oldStatus)=>{
+watch(status, (newStatus, oldStatus) => {
     console.log(newStatus)
     console.log(oldStatus)
 })
@@ -51,11 +56,14 @@ watch(status, (newStatus, oldStatus)=>{
 /*
     watch 监控对于引用类型，无法获取前后的值，如下list所示，new 和 old 会输出一样的值。
 */
-watch(already_login_user.value, (newAlready_login_user, old)=>{
+watch(already_login_user.value, (newAlready_login_user, old) => {
     console.log(newAlready_login_user)
     console.log(old)
 })
 
+onMounted(()=>{
+
+})
 
 </script>
 

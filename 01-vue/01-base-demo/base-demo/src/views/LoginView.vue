@@ -3,7 +3,7 @@
 -->
 
 <script setup>
-import HelloVue from '../components/HelloVue.vue'
+import HelloVue from '../components/Login.vue'
 import { ref } from 'vue'
 
 // “ref”是用来存储值的响应式数据源。

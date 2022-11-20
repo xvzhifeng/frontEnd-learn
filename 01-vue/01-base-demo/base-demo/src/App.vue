@@ -1,6 +1,14 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import Cookies from 'js-cookie'
+import { onMounted } from 'vue';
+import router from './router';
+let isLogin = Cookies.get('login')
+console.log(Cookies.get('login'))
+onMounted(() =>{
+  router.push("/")
+})
 </script>
 
 <template>
@@ -12,7 +20,8 @@ import HelloWorld from './components/HelloWorld.vue'
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/study_demo">Study-demo</RouterLink>
+        <RouterLink v-if="isLogin" to="/todo_list">todo-list</RouterLink>
+        <RouterLink v-else to="/login">Login</RouterLink>  
         <RouterLink to="/about">About</RouterLink>
       </nav>
     </div>
