@@ -1,23 +1,30 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
 import Cookies from 'js-cookie'
 import { onMounted } from 'vue';
 import router from './router';
+import HomeView from './views/HomeView.vue'
+import LoginView from './views/LoginView.vue'
 let isLogin = Cookies.get('login')
 console.log(Cookies.get('login'))
-onMounted(() =>{
-  router.push("/")
+onMounted(() => {
+  router.push("/todo_list")
 })
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <div v-if="isLogin">
+    <div style="width: 100%;">
+      <HomeView />
+    </div>
+  </div>
+  <div v-else>
+    <LoginView />
+  </div>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
 
+  <!-- <header>
+      <div class="wrapper">
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink v-if="isLogin" to="/todo_list">todo-list</RouterLink>
@@ -27,13 +34,13 @@ onMounted(() =>{
     </div>
   </header>
 
-  <RouterView />
+  <div><RouterView /></div> -->
 </template>
 
-<style scoped>
+<!-- <style scoped>
 header {
-  line-height: 1.5;
-  max-height: 100vh;
+  line-height: 1.5; 
+  max-height: 100vh; 
 }
 
 .logo {
@@ -79,6 +86,7 @@ nav a:first-of-type {
 
   header .wrapper {
     display: flex;
+    width: 100%;
     place-items: flex-start;
     flex-wrap: wrap;
   }
@@ -92,4 +100,4 @@ nav a:first-of-type {
     margin-top: 1rem;
   }
 }
-</style>
+</style> -->
