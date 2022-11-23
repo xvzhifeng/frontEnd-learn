@@ -14,7 +14,7 @@ onMounted(() => {
 
 <template>
   <div v-if="isLogin">
-    <div style="width: 100%;">
+    <div style="width: 100%; height: 100vh;">
       <HomeView />
     </div>
   </div>

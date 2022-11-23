@@ -1,8 +1,12 @@
-<template>
+<template class = "body">
   <el-container class="layout-container-demo" style="height: 100%">
-    <el-aside width="200px">
-      <el-scrollbar>
-        <el-menu :default-openeds="['1', '3']">
+    <el-aside width="200px" class="border-r-2 h-full" background-color="#545c64">
+      <el-scrollbar class="h-full side">
+        <el-menu :default-openeds="['1']" active-text-color="#ffd04b"
+        background-color="#545c64"
+        class="el-menu-vertical-demo"
+        default-active="2"
+        text-color="#fff">
           <el-sub-menu index="1">
             <template #title>
               <el-icon>
@@ -12,12 +16,15 @@
             <el-menu-item-group>
               <template #title>Top</template>
               <el-menu-item index="1-1">
-                <RouterLink to="/todo_list">todo-list</RouterLink>
+                <RouterLink to="/todo_list" class="w-full h-full">Todo-list</RouterLink>
+              </el-menu-item>
+              <el-menu-item index="1-2">
+                <RouterLink to="/memo" class="w-full h-full">Memo</RouterLink>
               </el-menu-item>
             </el-menu-item-group>
             <el-menu-item-group title="About">
               <el-menu-item index="1-3">
-                <RouterLink to="/about">About</RouterLink>
+                <RouterLink to="/about" class="w-full h-full">About</RouterLink>
               </el-menu-item>
             </el-menu-item-group>
           </el-sub-menu>
@@ -25,7 +32,7 @@
       </el-scrollbar>
     </el-aside>
 
-    <el-container>
+    <el-container class="border-l-2 h-full">
       <el-header>
         <!-- <div>
           <el-icon @click="logout" style="margin-right: 80px; margin-top: 1px">
@@ -36,26 +43,20 @@
         <div>
           <span>Sumu</span>
         </div> -->
-        <el-row :gutter="20">
-          <el-col :span="10">
-          </el-col>
-          <el-col :span="10">
-          </el-col>
-          <el-col :span="1">
-            <div>
-              <el-icon @click="logout" >
+        <div class="flex flex-row justify-end">
+          <div class="py-3 px-2 flex flex-row items-center">
+              <el-icon @click="logout" class="m-1">
               <Promotion />
               </el-icon>
+              <el-link type="primary" @click="logout">Logout</el-link>
           </div>
-          </el-col>
-          <el-col :span="2">
-            <el-link type="primary" @click="logout">Logout</el-link>
-            <!-- <span @click="logout">Logout</span> -->
-          </el-col>
-          <el-col :span="1">
-            <span>Sumu</span>
-          </el-col>
-        </el-row>
+          <div class="py-3 px-2 flex flex-row items-center">
+              <el-icon class="m-1">
+              <User />
+              </el-icon>
+              <label>Sumu</label>
+          </div>
+        </div>
       </el-header>
 
       <el-main>
@@ -74,7 +75,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { Menu as IconMenu, Aim, Promotion } from '@element-plus/icons-vue'
+import { Menu as IconMenu, Aim, Promotion,User } from '@element-plus/icons-vue'
 import Cookies from "js-cookie"
 import router from "../router/index"
 const item = {
@@ -86,13 +87,18 @@ const tableData = ref(Array.from({ length: 20 }).fill(item))
 
 let logout = () => {
   Cookies.set("login", '')
-  Cookies.set("username", '')
-
   router.go("/")
 }
 </script>
 
-<style scoped>
+<style >
+
+.side{
+  background-color:#545c64
+}
+body{
+  height: 100vh;
+}
 .layout-container-demo .el-header {
   position: relative;
   /* background-color: var(--el-color-primary-light-7); */

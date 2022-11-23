@@ -6,6 +6,31 @@ const show = ref(true)
 const items = ref(['1', '2', '3'])
 const item = ref("")
 
+
+const tableData = [
+  {
+    date: '2016-05-03',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    date: '2016-05-02',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    date: '2016-05-04',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+  {
+    date: '2016-05-01',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+]
+
+
 let add_todo = () => {
   if (item.value) {
     items.value.push(item.value)
@@ -48,10 +73,10 @@ onMounted(() => {
       <p v-else-if="items.length">List is not empty, but hidden.</p>
       <p v-else>List is empty.</p>
     </div>
-  </div>>
+  </div>
 </template>
 
-<style>
+<style scoped>
 .todo {
   display: grid;
   justify-items: center;
