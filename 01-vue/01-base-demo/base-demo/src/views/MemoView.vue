@@ -2,7 +2,13 @@
     <el-table :data="filterTableData" style="width: 100%">
         <el-table-column label="Kind" prop="kind" />
         <el-table-column label="Name" prop="name" />
-        <el-table-column label="detail" prop="detail" />
+        <el-table-column label="detail" prop="detail">
+            <template #default="scope">
+                <div style="display: flex; align-items: left">
+                    <span class="truncate w-24">{{ scope.row.detail }}</span>
+                </div>
+            </template>
+        </el-table-column>
         <el-table-column label="Date" prop="date" />
         <el-table-column prop="tag" label="Tag" width="100" :filters="[
             { text: 'Inprogress', value: 'Inprogress' },
@@ -63,8 +69,10 @@
         </template>
     </el-dialog>
     <el-dialog v-model="dialogDetail" title="Detail">
-        
-        <div class="w-64 h-64 " v-html="output"></div>
+        <el-scrollbar class="h-96">
+            <div id="detail" class="max-h-screen" v-html="output"></div>
+        </el-scrollbar>
+
         <template #footer>
             <span class="dialog-footer">
                 <el-button @click="dialogDetail = false">Cancel</el-button>
@@ -127,10 +135,10 @@ const handleEdit = (index: number, row: Memo) => {
 const handleDelete = (index: number, row: Memo) => {
     console.log(index, row)
     tableData.forEach((item, index, arr) => {
-            if (item.id == row.id) {
-                arr.splice(index, 1)
-            }
-        })
+        if (item.id == row.id) {
+            arr.splice(index, 1)
+        }
+    })
 }
 
 const handleShow = (index: number, row: Memo) => {
@@ -145,6 +153,9 @@ const handleShow = (index: number, row: Memo) => {
 }
 
 
+function getCurDate() {
+    return new Date().toJSON().substr(0, 10);
+};
 
 // let tableData: Memo[] = reactive([
 //     {
@@ -168,12 +179,14 @@ let tableData: Memo[] = reactive(JSON.parse(localStorage.getItem(STORAGE_KEY) ||
 
 let add_memo = () => {
     console.log(form)
+
     if (form.id) {
+        // edit
         tableData.forEach((item, index, arr) => {
             if (item.id == form.id) {
                 arr.splice(index, 1)
                 arr.splice(index, 0, {
-                    id: form.id, date: "2016-05-03", name: form.name, detail: form.detail, kind: form.kind, tag: form.tag
+                    id: form.id, date: form.date, name: form.name, detail: form.detail, kind: form.kind, tag: form.tag
                 })
             }
         })
@@ -181,8 +194,9 @@ let add_memo = () => {
         //     id: form.id, date: "2016-05-03", name: form.name, detail: form.detail, kind: form.kind, tag: form.tag
         // })
     } else {
+        // add
         tableData.push({
-            id: uuid.v1(), date: "2016-05-03", name: form.name, detail: form.detail, kind: form.kind, tag: form.tag
+            id: uuid.v1(), date: getCurDate(), name: form.name, detail: form.detail, kind: form.kind, tag: form.tag
         })
     }
     form.date = ""
@@ -193,6 +207,7 @@ let add_memo = () => {
     form.id = ""
     console.log(tableData)
     dialogFormVisible.value = false
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(tableData))
 }
 
 onUnmounted(() => {
@@ -205,3 +220,77 @@ onMounted(() => {
 
 </script>
   
+<style >
+#detail h1 {
+    font-size: 2.5rem;
+}
+
+#detail h2 {
+    font-size: 2rem;
+}
+
+#detail h1 {
+    font-size: 2em;
+    margin: .67em 0
+}
+
+#detail h2 {
+    font-size: 1.5em;
+    margin: .75em 0
+}
+
+#detail h3 {
+    font-size: 1.17em;
+    margin: .83em 0
+}
+
+#detail h4,
+p,
+blockquote,
+ul,
+fieldset,
+form,
+ol,
+dl,
+dir,
+menu {
+    margin: 1.12em 0
+}
+
+#detail h5 {
+    font-size: .83em;
+    margin: 1.5em 0
+}
+
+#detail h6 {
+    font-size: .75em;
+    margin: 1.67em 0
+}
+
+#detail h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+b,
+strong {
+    font-weight: bolder
+}
+
+#detail pre code {
+    color: red
+}
+
+#detail a {
+    color: #42b983;
+    font-weight: 600;
+    padding: 0 2px;
+    text-decoration: none;
+}
+
+#detail pre {
+    padding-left: 12px;
+    border-left: 2px solid #42b983;
+}
+</style>
