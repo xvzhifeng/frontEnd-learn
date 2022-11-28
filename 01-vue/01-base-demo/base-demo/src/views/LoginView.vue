@@ -2,7 +2,7 @@
 跟 Vue 说 Hello World！
 -->
 
-<script setup>
+<script setup lang="ts">
 
 import { ref, onMounted } from 'vue'
 import {User, Lock} from '@element-plus/icons-vue'

@@ -1,9 +1,7 @@
-<script setup>
+<script setup lang="ts">
 import { ref, computed } from 'vue'
 
-const props = defineProps({
-  model: Object
-})
+const props = defineProps(['model'])
 
 const isOpen = ref(false)
 const isFolder = computed(() => {
@@ -44,7 +42,7 @@ function addChild() {
       -->
       <TreeItem
         class="item"
-        v-for="model in model.children"
+        v-for="model in props.model.children"
         :model="model">
       </TreeItem>
       <li class="add" @click="addChild">+</li>
