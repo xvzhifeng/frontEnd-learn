@@ -25,7 +25,7 @@
         </el-table-column>
         <el-table-column align="right">
             <template #header>
-                <el-input v-model="search" size="small" placeholder="Type to search" />
+                <el-input v-model="search" size="small" placeholder="Name to search" />
             </template>
             <template #default="scope">
                 <el-button size="small" @click="handleShow(scope.$index, scope.row)">view</el-button>

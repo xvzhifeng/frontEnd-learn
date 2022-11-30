@@ -82,6 +82,11 @@ let add_todo_data = (M: Memo) => {
   tableData.push({
     id: uuid.v1(), date: getCurDate(), name: M.name, detail: M.detail, kind: M.kind, tag: M.tag
   })
+  M.name = ""
+  M.detail = ""
+  M.kind = ""
+  M.tag = ""
+  M.id = ""
   dialogFormVisible.value = false
   localStorage.setItem(STORAGE_KEY, JSON.stringify(tableData))
 }
