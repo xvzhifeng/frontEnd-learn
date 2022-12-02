@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref, reactive, computed } from 'vue'
+import { Calendar, Search } from '@element-plus/icons-vue'
 import Cookies from 'js-cookie'
 import TodoDetail from "../components/TodoDetail.vue"
 import AddTodo from "../components/AddTodo.vue"
@@ -8,6 +9,8 @@ let user = ref(Cookies.get("username"))
 const show = ref(true)
 const items = ref(['1', '2', '3'])
 const item = ref("")
+const selectTag = ref("")
+const searchValue = ref("")
 const detailOutput = ref("")
 const dialogDetail = ref(false)
 const dialogFormVisible = ref(false)
@@ -66,7 +69,7 @@ let close = () => {
   dialogDetail.value = false
 }
 onMounted(() => {
-    let tableData = reactive(JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'))
+  let tableData = reactive(JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'))
 })
 
 let show_add_todo = () => {
@@ -90,6 +93,12 @@ let add_todo_data = (M: Memo) => {
   dialogFormVisible.value = false
   localStorage.setItem(STORAGE_KEY, JSON.stringify(tableData))
 }
+
+let tableDataFilter = computed(() => {
+  return tableData.filter((x: Memo) => {
+    return x.name.includes(searchValue.value) && x.tag.includes(selectTag.value)
+  })
+})
 </script>
 
 <template>
@@ -98,7 +107,19 @@ let add_todo_data = (M: Memo) => {
     <div class="text-center w-full" @click="show_add_todo">
       <h1 class="text-2xl py-4 text-center">{{ user }} Todo List</h1>
     </div>
-
+    <div class="flex flex-row items-start w-full">
+      <div class="ml-5">
+        <el-input v-model="searchValue" class="w-14 m-2" placeholder="Name something" :prefix-icon="Search" />
+      </div>
+      <div class="ml-5 mt-2">
+        <el-select v-model="selectTag" placeholder="Please select a Type">
+          <el-option label="Plan" value="Plan" />
+          <el-option label="Discard" value="Discard" />
+          <el-option label="Completed" value="Completed" />
+          <el-option label="Inprogress" value="Inprogress" />
+        </el-select>
+      </div>
+    </div>
     <div>
       <div @keydown.enter="add_todo">
         <!-- <label class="py-3"> add todo </label> -->
@@ -116,7 +137,7 @@ let add_todo_data = (M: Memo) => {
 
     <div class="mt-3 w-full pl-5 pr-5 ">
       <el-scrollbar>
-        <div v-if="show && tableData.length" v-for="item of tableData">
+        <div v-if="show && tableDataFilter.length" v-for="item of tableDataFilter">
           <el-card class="box-card mt-3 p-0">
             <div class="grid grid-rows-1 grid-flow-col gap-4">
               <div class="col-span-9" @click="show_detail(item)">
