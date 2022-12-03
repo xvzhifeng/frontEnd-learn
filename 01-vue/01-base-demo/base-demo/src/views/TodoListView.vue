@@ -102,24 +102,29 @@ let tableDataFilter = computed(() => {
 </script>
 
 <template>
-  <el-button class="fixed top-100 right-10" type="success" plain @click="show_add_todo">Add</el-button>
+
   <div class="todo">
     <div class="text-center w-full" @click="show_add_todo">
       <h1 class="text-2xl py-4 text-center">{{ user }} Todo List</h1>
     </div>
-    <div class="flex flex-row items-start w-full">
+    <div class="flex flex-row  w-full">
       <div class="ml-5">
         <el-input v-model="searchValue" class="w-14 m-2" placeholder="Name something" :prefix-icon="Search" />
       </div>
       <div class="ml-5 mt-2">
         <el-select v-model="selectTag" placeholder="Please select a Type">
+          <el-option label="Not select" value="" />
           <el-option label="Plan" value="Plan" />
           <el-option label="Discard" value="Discard" />
           <el-option label="Completed" value="Completed" />
           <el-option label="Inprogress" value="Inprogress" />
         </el-select>
       </div>
+      <div class="self-center">
+        <el-button class="" type="success" plain @click="show_add_todo">Add</el-button>
+      </div>
     </div>
+
     <div>
       <div @keydown.enter="add_todo">
         <!-- <label class="py-3"> add todo </label> -->

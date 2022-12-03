@@ -1,12 +1,10 @@
 <template class = "body">
   <el-container class="layout-container-demo" style="height: 100%">
+
     <el-aside width="200px" class="border-r-2 h-full" background-color="#545c64">
       <el-scrollbar class="h-full side">
-        <el-menu :default-openeds="['1']" active-text-color="#ffd04b"
-        background-color="#545c64"
-        class="el-menu-vertical-demo"
-        default-active="2"
-        text-color="#fff">
+        <el-menu :default-openeds="['1']" active-text-color="#ffd04b" background-color="#545c64"
+          class="el-menu-vertical-demo" default-active="2" text-color="#fff">
           <el-sub-menu index="1">
             <template #title>
               <el-icon>
@@ -45,16 +43,16 @@
         </div> -->
         <div class="flex flex-row justify-end">
           <div class="py-3 px-2 flex flex-row items-center">
-              <el-icon @click="logout" class="m-1">
+            <el-icon @click="logout" class="m-1">
               <Promotion />
-              </el-icon>
-              <el-link type="primary" @click="logout">Logout</el-link>
+            </el-icon>
+            <el-link type="primary" @click="logout">Logout</el-link>
           </div>
           <div class="py-3 px-2 flex flex-row items-center">
-              <el-icon class="m-1">
+            <el-icon class="m-1">
               <User />
-              </el-icon>
-              <label>Sumu</label>
+            </el-icon>
+            <label>Sumu</label>
           </div>
         </div>
       </el-header>
@@ -69,13 +67,15 @@
         </el-scrollbar> -->
         <RouterView />
       </el-main>
+      <el-footer class="text-center">Copyright © 2022 xuzhif</el-footer>
     </el-container>
   </el-container>
+
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { Menu as IconMenu, Aim, Promotion,User } from '@element-plus/icons-vue'
+import { Menu as IconMenu, Aim, Promotion, User } from '@element-plus/icons-vue'
 import Cookies from "js-cookie"
 import router from "../router/index"
 const item = {
@@ -92,13 +92,14 @@ let logout = () => {
 </script>
 
 <style >
-
-.side{
-  background-color:#545c64
+.side {
+  background-color: #545c64
 }
-body{
+
+body {
   height: 100vh;
 }
+
 .layout-container-demo .el-header {
   position: relative;
   /* background-color: var(--el-color-primary-light-7); */

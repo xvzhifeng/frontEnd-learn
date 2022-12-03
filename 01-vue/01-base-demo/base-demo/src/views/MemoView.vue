@@ -48,10 +48,11 @@
                 <el-input v-model="form.name" autocomplete="off" />
             </el-form-item>
             <el-form-item label="Detail" :label-width="formLabelWidth">
-                <el-input v-model="form.detail" :rows="2" type="textarea" placeholder="Please input" />
+                <el-input v-model="form.detail" :rows="10" type="textarea" placeholder="Please input" />
             </el-form-item>
             <el-form-item label="Tag" :label-width="formLabelWidth">
                 <el-select v-model="form.tag" placeholder="Please select a Type">
+                    <el-option label="Not select" value="" />
                     <el-option label="Plan" value="Plan" />
                     <el-option label="Discard" value="Discard" />
                     <el-option label="Completed" value="Completed" />
@@ -75,8 +76,8 @@
 
         <template #footer>
             <span class="dialog-footer">
-                <el-button @click="dialogDetail = false">Cancel</el-button>
-                <el-button type="primary" @click="dialogDetail = false" class="text-gray-600">
+                <el-button @click="closeDetail">Cancel</el-button>
+                <el-button type="primary" @click="closeDetail" class="text-gray-600">
                     Confirm
                 </el-button>
             </span>
@@ -150,6 +151,16 @@ const handleShow = (index: number, row: Memo) => {
     form.kind = row.kind
     form.tag = row.tag
     form.id = row.id
+}
+
+const closeDetail = () => {
+    dialogDetail.value = false
+    form.date = ""
+    form.name = ""
+    form.detail = ""
+    form.kind = ""
+    form.tag = ""
+    form.id = ""
 }
 
 
